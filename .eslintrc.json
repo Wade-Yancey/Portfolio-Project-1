@@ -1,0 +1,65 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "import/no-unresolved": "error"
+  },
+  "overrides": [
+    {
+      "files": "_document.tsx",
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/unbound-method": "off"
+      }
+    },
+    {
+      "files": ["src/**/*.{ts,tsx}"],
+      "excludedFiles": ["src/**/*stories.{ts,tsx,mdx}"],
+      "rules": {
+        "import/no-default-export": "error",
+        "import/no-anonymous-default-export": "off",
+        "import/no-named-as-default": "off",
+        "import/prefer-default-export": "off"
+      }
+    },
+    {
+      "files": ["src/pages/**/*.{ts,tsx}"],
+      "rules": {
+        "import/no-default-export": "off",
+        "import/no-anonymous-default-export": "error",
+        "import/no-named-as-default": "error",
+        "import/prefer-default-export": "error"
+      }
+    },
+    {
+      "files": "src/**/*.stories.{ts,tsx,mdx}",
+      "extends": ["plugin:storybook/recommended"]
+    },
+    {
+      "files": ["**/*.(spec|test).{ts,tsx}"],
+      "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+    },
+    {
+      "files": ["**/cypress/**/*.{ts,tsx}"],
+      "extends": ["plugin:cypress/recommended"]
+    }
+  ]
+}
